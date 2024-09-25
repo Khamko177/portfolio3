@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Khamko - Personal Portfolio</title>
+    <meta name="description" content="Personal portfolio showcasing photography skills, projects, and professional journey of [Your Name]">
+    <meta name="keywords" content="portfolio, photography, web development, [Your Name]">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Sans+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@100..900&family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- AOS library for scroll animations -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+    
+    <style>
+        :root {
+            --primary-color: #3a4750;
+            --secondary-color: #303841;
+            --accent-color: #00adb5;
+            --text-color: #eeeeee;
+            --background-color: #222831;
+            --neumorphism-light: 5px 5px 10px #1b1f25, -5px -5px 10px #29313d;
+            --neumorphism-inset: inset 5px 5px 10px #1b1f25, inset -5px -5px 10px #29313d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Fira Sans Condensed', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        header {
+            background-color: var(--secondary-color);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .language-selector {
+            position: relative;
+        }
+
+        .language-selector select {
+            appearance: none;
+            background-color: transparent;
+            border: none;
+            color: var(--text-color);
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.5rem 1rem;
+            cursor: pointer;
+        }
+
+        .language-selector::after {
+            content: '\25BC';
+            position: absolute;
+            top: 50%;
+            right: 0.5rem;
+            transform: translateY(-50%);
+            pointer-events: none;
+        }
+
+        #home {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url('https://picsum.photos/3000/2000?random=1');
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .home-content {
+            text-align: center;
+            z-index: 1;
+        }
+
+        .home-content h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .home-content p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            background-color: var(--accent-color);
+            color: var(--text-color);
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            box-shadow: var(--neumorphism-light);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--neumorphism-inset);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent-color);
+        }
+
+        #about {
+            padding: 5rem 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .about-text {
+            flex: 1;
+            padding-right: 2rem;
+        }
+
+        .about-image {
+            flex: 1;
+            text-align: center;
+        }
+
+        .about-image img {
+            max-width: 40%;
+            border-radius: 50%;
+            box-shadow: var(--neumorphism-light);
+        }
+
+        #portfolio {
+            padding: 5rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: var(--neumorphism-light);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .portfolio-item-info {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: var(--text-color);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .portfolio-item:hover .portfolio-item-info {
+            transform: translateY(0);
+        }
+
+        #education {
+            padding: 5rem 0;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            background-color: inherit;
+            width: 50%;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            right: -17px;
+            background-color: var(--background-color);
+            border: 4px solid var(--accent-color);
+            top: 15px;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .left {
+            left: 0;
+        }
+
+        .right {
+            left: 50%;
+        }
+
+        .left::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            right: 30px;
+            border: medium solid var(--accent-color);
+            border-width: 10px 0 10px 10px;
+            border-color: transparent transparent transparent var(--accent-color);
+        }
+
+        .right::before {
+            content: " ";
+            height: 0;
+            position: absolute;
+            top: 22px;
+            width: 0;
+            z-index: 1;
+            left: 30px;
+            border: medium solid var(--accent-color);
+            border-width: 10px 10px 10px 0;
+            border-color: transparent var(--accent-color) transparent transparent;
+        }
+
+        .right::after {
+            left: -16px;
+        }
+
+        .timeline-content {
+            padding: 20px 30px;
+            background-color: var(--secondary-color);
+            position: relative;
+            border-radius: 6px;
+            box-shadow: var(--neumorphism-light);
+        }
+
+        #future-plans {
+            padding: 5rem 0;
+            background-color: var(--secondary-color);
+        }
+
+        .future-plans-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .future-plan-item {
+            flex-basis: calc(33.333% - 2rem);
+            margin-bottom: 2rem;
+            padding: 2rem;
+            background-color: var(--primary-color);
+            border-radius: 10px;
+            box-shadow: var(--neumorphism-light);
+            transition: transform 0.3s ease;
+        }
+
+        .future-plan-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .future-plan-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--accent-color);
+        }
+
+        #contact {
+            padding: 5rem 0;
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 2rem;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            box-shadow: var(--neumorphism-light);
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--accent-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: none;
+            background-color: var(--primary-color);
+            color: var(--text-color);
+            border-radius: 5px;
+            box-shadow: var(--neumorphism-inset);
+        }
+
+        .form-group textarea {
+            height: 150px;
+            resize: vertical;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 2rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            margin: 0 1rem;
+            color: var(--text-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--accent-color);
+        }
+
+        footer {
+            background-color: var(--secondary-color);
+            color: var(--text-color);
+            text-align: center;
+            padding: 1rem 0;
+        }
+
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .about-content {
+                flex-direction: column;
+            }
+
+            .about-text,
+            .about-image {
+                padding: 0;
+                margin-bottom: 2rem;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item::before {
+                left: 60px;
+                border: medium solid var(--accent-color);
+                border-width: 10px 10px 10px 0;
+                border-color: transparent var(--accent-color) transparent transparent;
+            }
+
+            .left::after, .right::after {
+                left: 15px;
+            }
+
+            .right {
+                left: 0%;
+            }
+
+            .future-plan-item {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="container">
+            <div class="logo">Khamko</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Portfolio</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#future-plans">Future Plans</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="language-selector">
+                <select id="language-select">
+                    <option value="en">English</option>
+                    <option value="vi">Tiếng Việt</option>
+                    <option value="lo">ພາສາລາວ</option>
+                </select>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home">
+            <div class="home-content">
+                <h1>Welcome to My Portfolio</h1>
+                <p>Photographer | Web Developer | Lifelong Learner</p>
+                <a href="#about" class="btn">Learn More</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>Hello! I'm Khamko, a passionate photographer, front-end developer, and travel enthusiast. I love capturing the world through my lens and translating creative ideas into beautiful, functional websites. </p>
+                        <p>My journey in photography allows me to explore new perspectives, while coding challenges me to bring designs to life with a focus on user experience. When I'm not behind the camera or writing code, you can find me discovering new places and cultures, which constantly inspire my work.</p>
+                    </div>
+                    <div class="about-image">
+                        <img src="img/khamko.png" alt="Khamko">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio">
+            <div class="container">
+                <h2 class="section-title">My Portfolio</h2>
+                <div class="portfolio-grid">
+                    <div class="portfolio-item">
+                        <img src="img/project1.jpg" alt="Project 1">
+                        <div class="portfolio-item-info">
+                            <h3>Lao Shoes</h3>
+                            <p>"This is a third-year project to build a shoe shop website using PHP."</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="img/project2.jpg" alt="Project 2">
+                        <div class="portfolio-item-info">
+                            <h3>Football news</h3>
+                            <p>"This is a third-year project to build a football news website using PHP."</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="img/project3.jpg" alt="Project 3">
+                        <div class="portfolio-item-info">
+                            <h3>Phone shop</h3>
+                            <p>"This is a third-year project to build a phone shop website using PHP."</p>
+                        </div>
+                    </div>
+                    <div class="portfolio-item">
+                        <img src="img/project4.jpg" alt="Project 4">
+                        <div class="portfolio-item-info">
+                            <h3>Phone shop</h3>
+                            <p>"This is a third-year project to build a phone shop website using JavaScript."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education">
+            <div class="container">
+                <h2 class="section-title">Education & Skills</h2>
+                <div class="timeline">
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2017-2020</h3>
+                            <p>SomSouk Secondary School</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2020 - 2021</h3>
+                            <p><b>Learn Vietnamese</b></p>
+                            <p>The University of Danang - University of Science and Education</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2021 - 2025</h3>
+                            <p><b>Information technology</b></p>
+                            <p>The University of Danang - University of Science and Education</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2025</h3>
+                            <p><b>Intern</b></p>
+                            <p><b>Web developer</b></p>
+                            <p>Pascalia Asia Viet Nam</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item left">
+                        <div class="timeline-content">
+                            <h3>2025 - 2030</h3>
+                            <p><b>Web developer</b></p>
+                            <p>.....................</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item right">
+                        <div class="timeline-content">
+                            <h3>2030</h3>
+                            <p><b>Web developer</b></p>
+                            <p>.......................</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="future-plans">
+            <div class="container">
+                <h2 class="section-title">Future Plans</h2>
+                <div class="future-plans-content">
+                    <div class="future-plan-item">
+                        <h3>Master New Technologies</h3>
+                        <p>Continuously learn and adapt to emerging web technologies and photography techniques.</p>
+                    </div>
+                    <div class="future-plan-item">
+                        <h3>Start a Photography Blog</h3>
+                        <p>Share my experiences, tips, and insights with fellow photography enthusiasts.</p>
+                    </div>
+                    <div class="future-plan-item">
+                        <h3>Freelance Web Development</h3>
+                        <p>Take on challenging projects to further hone my skills and build a diverse portfolio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <div class="container">
+                <h2 class="section-title">Get in Touch</h2>
+                <form class="contact-form">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Send Message</button>
+                </form>
+                <div class="social-links">
+                    <a href="https://web.facebook.com/khamkoxys" target="_blank"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:3120221520@ued.udn.vn" target="_blank"><i class="fas fa-envelope"></i></a>
+                    <a href="https://www.instagram.com/khamko177/" target="_blank"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Khamko. All rights reserved.</p>
+    </footer>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Form submission
+        document.querySelector('.contact-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.');
+            this.reset();
+        });
+
+        // Language switcher
+        const languageSelect = document.getElementById('language-select');
+        const translations = {
+            en: {
+                home: 'Home',
+                about: 'About',
+                portfolio: 'Portfolio',
+                education: 'Education',
+                futurePlans: 'Future Plans',
+                contact: 'Contact'
+            },
+            vi: {
+                home: 'Trang chủ',
+                about: 'Giới thiệu',
+                portfolio: 'Dự án',
+                education: 'Học vấn',
+                futurePlans: 'Kế hoạch',
+                contact: 'Liên hệ'
+            },
+            lo: {
+                home: 'ໜ້າຫຼັກ',
+                about: 'ກ່ຽວກັບ',
+                portfolio: 'ຜົນງານ',
+                education: 'ການສຶກສາ',
+                futurePlans: 'ແຜນອະນາຄົດ',
+                contact: 'ຕິດຕໍ່'
+            }
+        };
+
+        languageSelect.addEventListener('change', function() {
+            const lang = this.value;
+            document.documentElement.lang = lang;
+            document.body.style.fontFamily = lang === 'en' ? "'Fira Sans Condensed', sans-serif" : 
+                                             lang === 'vi' ? "'Oswald', sans-serif" : 
+                                             "'Noto Sans Lao', sans-serif";
+            
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const key = link.getAttribute('href').substring(1);
+                link.textContent = translations[lang][key];
+            });
+        });
+
+        // Lightbox for portfolio items
+        const portfolioItems = document.querySelectorAll('.portfolio-item');
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const img = this.querySelector('img');
+                const lightbox = document.createElement('div');
+                lightbox.id = 'lightbox';
+                document.body.appendChild(lightbox);
+
+                const lightboxImage = document.createElement('img');
+                lightboxImage.src = img.src;
+                lightbox.appendChild(lightboxImage);
+
+                lightbox.addEventListener('click', e => {
+                    if (e.target !== e.currentTarget) return;
+                    lightbox.remove();
+                });
+            });
+        });
+    </script>
+</body>
+</html>
